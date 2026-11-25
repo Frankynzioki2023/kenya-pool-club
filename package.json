@@ -1,0 +1,14 @@
+{
+  "name": "kenya-pool-club-demo",
+  "version": "5.1.0",
+  "private": true,
+  "description": "Kenyan pool multi-device virtual-credit playtest",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node tests/engine.test.js && node tests/api.test.js && node tests/admin.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "UNLICENSED"
+}

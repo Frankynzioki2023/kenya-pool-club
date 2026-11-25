@@ -1,0 +1,18 @@
+KENYA POOL CLUB — ROYAL EDITION V5.1
+LOCAL BETA / HOSTING PREPARATION
+
+1. Close V5. Extract this archive. Double-click START_GAME.bat.
+2. Open http://localhost:8080 in Chrome. Use fictional aliases and demo PINs only.
+3. Owner dashboard: http://localhost:8080/admin
+4. Open demo-data.json.admin-key in Notepad (in the extracted folder). Copy the key into the dashboard. Keep it private. This key is generated on first launch; it is not included in the ZIP. If POOL_ADMIN_KEY is configured, use that instead.
+5. Test with a separate browser or phone on the same trusted Wi-Fi. Use the phone address printed by the server. Players can send feedback from the lobby.
+6. Test referrals by appending ?ref=whatsapp or ?ref=poolclub to the game URL.
+7. Dashboard reports refresh every 10 seconds and can be exported as JSON.
+
+Data migration: before starting V5.1, optionally copy demo-data.json from V5 into the new folder. Back up the original. Old accounts persist but historical match analytics cannot be reconstructed. New registration no longer collects phone or next-of-kin information. Existing migrated records may contain old fictional fields.
+
+Data storage: a single Node process writes demo-data.json atomically, including accounts, wallets and analytics; activity is saved every 15 seconds and on normal shutdown. It is not a production database. Keep backups and the owner key separate from public files. Do not share these files. Unfinished matches are refunded on restart; analytics mark them abandoned. All balances and withdrawals are fictional and non-redeemable.
+
+PUBLIC HOSTING: NOT DEPLOYED. This build is for local/trusted network testing. A localhost URL cannot be shared with remote users. Before publishing, arrange a hosting account and HTTPS domain, migrate to a durable database, strengthen authentication and session management (current player PINs are demo only), implement account recovery/deletion, privacy notice and consent, abuse controls and load testing, review server security, and test on physical mobile devices. For a hosting pilot use a single instance with persistent storage, environment variable PORT, HOST=0.0.0.0, POOL_DATA_FILE on the persistent disk and a private randomly generated POOL_ADMIN_KEY of at least 24 characters. Do not expose this demo without review. No live payments or cash prizes.
+
+Tests: npm test (Node 18+; no third-party packages required). Includes 46 existing engine assertions, existing multiplayer/wallet API tests and new admin analytics tests. The new UI has syntax checks but has not been visually tested in a physical browser/phone.
